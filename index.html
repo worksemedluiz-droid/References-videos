@@ -169,7 +169,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* Iframe do Vídeo - CORREÇÃO FINAL PARA SAFARI */
+        /* Iframe do Vídeo e Imagem */
         .video-iframe {
             width: 100%;
             height: 100%;
@@ -377,14 +377,16 @@
                     </iframe>
                 </div>
                 
-                <!-- IMAGEM (NOVO CARD #8) -->
+                <!-- IMAGEM (NOVO CARD #8) - CORRIGIDO PARA IFRAME -->
                 <div class="content-card">
                     <div class="content-label">IMAGEM #8</div>
-                    <img 
-                        src="https://drive.google.com/file/d/1bWkTY29jvqSxubS-a6wQp3ifKh7x9a47/preview" 
-                        alt="Imagem de Referência"
-                        onerror="this.onerror=null; this.src='https://placehold.co/400x711/e5e7eb/6b7280?text=ERRO+AO+CARREGAR+IMAGEM';"
-                    >
+                    <div class="loader"></div>
+                    <iframe 
+                        class="video-iframe"
+                        src="https://drive.google.com/file/d/1bWkTY29jvqSxubS-a6wQp3ifKh7x9a47/preview"
+                        allow="autoplay; fullscreen"
+                        title="Imagem 8">
+                    </iframe>
                 </div>
             </div>
             <!-- FIM SEÇÃO DE VÍDEOS E IMAGEM -->
