@@ -11,17 +11,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* Variáveis CSS para gerenciamento de cores */
+        /* Variáveis CSS para gerenciamento de cores - TEMA CLARO E CLEAN */
         :root {
-            --bg-deep: #0d1117; 
-            --bg-card: #161b22; 
-            --bg-header: rgba(22, 27, 34, 0.95); 
-            --accent-primary: #58a6ff; 
-            --text-primary: #c9d1d9; 
-            --text-secondary: #8b949e; 
-            --border-color: #30363d;
-            --shadow-subtle: 0 4px 6px rgba(0, 0, 0, 0.3);
-            --shadow-glow: 0 0 10px rgba(88, 166, 255, 0.3);
+            --bg-deep: #f7f9fc; /* Fundo muito claro, quase branco pastel */
+            --bg-card: #ffffff; /* Cartões brancos */
+            --bg-header: rgba(255, 255, 255, 0.95); /* Header branco com transparência */
+            --accent-primary: #3b82f6; /* Azul primário mais vibrante para contraste */
+            --text-primary: #1f2937; /* Texto escuro */
+            --text-secondary: #6b7280; /* Texto secundário cinza */
+            --border-color: #e5e7eb; /* Borda clara */
+            --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.08); /* Sombra mais sutil */
+            --shadow-glow: 0 0 10px rgba(59, 130, 246, 0.3); /* Brilho de hover */
         }
 
         /* Reset e Base */
@@ -44,8 +44,6 @@
             flex-direction: column;
             min-height: 100vh;
             overflow-x: hidden; 
-            background-image: radial-gradient(circle at 1% 1%, var(--bg-card) 1px, transparent 0);
-            background-size: 20px 20px;
         }
 
         /* Cabeçalho */
@@ -65,7 +63,7 @@
         h1 {
             font-size: 1.4rem;
             font-weight: 700;
-            color: white;
+            color: var(--text-primary); 
             display: flex;
             align-items: center;
             gap: 12px;
@@ -76,15 +74,15 @@
             display: block;
             width: 10px;
             height: 10px;
-            background-color: #f85149; 
+            background-color: #ef4444; 
             border-radius: 50%;
-            box-shadow: 0 0 8px 1px #f85149;
+            box-shadow: 0 0 8px 1px #ef4444;
             animation: pulse 2s infinite;
         }
 
         .status-badge {
             background: var(--accent-primary);
-            color: var(--bg-deep);
+            color: #ffffff; 
             padding: 6px 16px;
             border-radius: 4px;
             font-size: 0.8rem;
@@ -116,7 +114,7 @@
             grid-template-columns: 1fr;
             gap: 20px;
             width: 100%;
-            margin-bottom: 40px; /* Espaçamento para a seção de links */
+            margin-bottom: 40px; 
         }
 
         @media (min-width: 768px) {
@@ -155,12 +153,12 @@
             z-index: 2;
         }
 
-        /* Label da Câmera */
+        /* Label da Câmera (Preto semi-transparente para legibilidade sobre o vídeo) */
         .cam-label {
             position: absolute;
             top: 10px;
             left: 10px;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.6); 
             padding: 5px 10px;
             border-radius: 6px;
             font-size: 0.8rem;
@@ -205,7 +203,7 @@
             border-radius: 10px;
             border: 1px solid var(--border-color);
             box-shadow: var(--shadow-subtle);
-            margin: 0 auto; /* Centraliza a seção no wrapper */
+            margin: 0 auto; 
         }
 
         .links-section h2 {
@@ -230,7 +228,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 12px 15px;
-            background: #1f242c; /* Fundo do card ligeiramente mais claro */
+            background: var(--bg-deep); 
             border-radius: 8px;
             text-decoration: none;
             color: var(--accent-primary);
@@ -238,22 +236,22 @@
             transition: all 0.3s ease;
             font-weight: 600;
             font-size: 0.95rem;
-            text-align: left; /* Garante que o texto comece à esquerda */
+            text-align: left; 
         }
 
         .link-card:hover {
-            background: #252a33;
+            background: #e2e8f0; 
             border-color: var(--accent-primary);
             transform: translateX(5px);
-            color: #ffffff; /* Brilho no texto ao passar o mouse */
+            color: var(--text-primary); 
         }
 
         .link-icon {
             font-size: 1.2rem;
-            opacity: 0.7;
+            opacity: 0.8;
             transition: opacity 0.3s;
             margin-left: 10px;
-            flex-shrink: 0; /* Impede o ícone de ser esmagado */
+            flex-shrink: 0; 
         }
 
         .link-card:hover .link-icon {
@@ -262,37 +260,11 @@
         /* FIM SEÇÃO DE LINKS */
 
 
-        /* Rodapé com QR Code */
-        footer {
-            background: var(--bg-card);
-            padding: 15px;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        .qr-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .qr-box {
-            background: white;
-            padding: 10px;
-            border-radius: 6px;
-            box-shadow: var(--shadow-subtle);
-            border: 1px solid #ddd;
-        }
-
         /* Animações */
         @keyframes pulse {
-            0% { box-shadow: 0 0 8px 1px #f85149; }
-            50% { box-shadow: 0 0 12px 2px #f85149; }
-            100% { box-shadow: 0 0 8px 1px #f85149; }
+            0% { box-shadow: 0 0 8px 1px #ef4444; }
+            50% { box-shadow: 0 0 12px 2px #ef4444; }
+            100% { box-shadow: 0 0 8px 1px #ef4444; }
         }
 
         @keyframes spin {
@@ -392,7 +364,7 @@
             <!-- FIM SEÇÃO DE VÍDEOS -->
 
 
-            <!-- SEÇÃO DE LINKS GOVERNAMENTAIS -->
+            <!-- SEÇÃO DE REFERÊNCIAS -->
             <div class="links-section">
                 <h2>REFERÊNCIAS BIBLIOGRÁFICAS</h2>
                 <div class="link-list">
@@ -409,37 +381,9 @@
                     
                 </div>
             </div>
-            <!-- FIM SEÇÃO DE LINKS -->
+            <!-- FIM SEÇÃO DE REFERÊNCIAS -->
         </div>
     </main>
-
-    <footer>
-        <!-- Adicionado ID 'qrSection' para controle de visibilidade -->
-        <div class="qr-section" id="qrSection"> 
-            <p>Escanear para Acesso Móvel (QR Code da URL Hospedada):</p>
-            <div class="qr-box">
-                <img id="qrImage" src="" alt="Gerando QR Code..." width="120" height="120">
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Script para gerar o QR Code da URL hospedada
-        window.onload = function() {
-            const currentUrl = window.location.href;
-            const qrSection = document.getElementById('qrSection');
-            const qrImage = document.getElementById('qrImage');
-            
-            if (currentUrl.startsWith('http')) {
-                // API de QR Code para a URL online
-                qrImage.src = https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(currentUrl)}&margin=10;
-                qrImage.alt = "QR Code para esta página";
-            } else {
-                // Se a página for aberta localmente (file://), esconde a seção do QR Code.
-                qrSection.style.display = 'none';
-            }
-        };
-    </script>
 
 </body>
 </html>
