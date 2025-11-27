@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monitoramento Multi-View - Responsivo</title>
+    <title>Monitoramento Multi-View - Final</title>
     
     <!-- Fonte Inter para tipografia moderna -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -53,7 +53,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 20px; /* Padding ajustado */
+            padding: 1rem 20px; 
             background: var(--bg-header);
             backdrop-filter: blur(8px);
             border-bottom: 1px solid var(--border-color);
@@ -92,14 +92,14 @@
             text-transform: uppercase;
         }
 
-        /* Container Principal - Flexível para preencher o espaço restante */
+        /* Container Principal */
         main {
-            flex: 1; /* Permite que o MAIN cresça e preencha o espaço */
+            flex: 1; 
             padding: 20px;
             max-width: 1800px; 
             margin: 0 auto; 
             width: 100%;
-            display: flex; /* Adicionado para centralizar o grid */
+            display: flex; 
             justify-content: center;
             align-items: center;
         }
@@ -115,20 +115,14 @@
         @media (min-width: 768px) {
             .video-grid {
                 grid-template-columns: repeat(2, 1fr);
-                /* Usamos MIN-HEIGHT para não depender de cálculos VH problemáticos no iOS */
                 min-height: calc(100vh - 140px);
-                max-width: 800px; /* Limita a largura total do grid no desktop */
-            }
-
-            /* Centraliza o grid dentro do MAIN no desktop */
-            main {
-                align-items: center; 
+                max-width: 840px; /* Leve aumento para caber melhor no desktop */
             }
         }
 
-        /* Cartão do Vídeo - CORREÇÃO DE ASPECT RATIO E TAMANHO MÁXIMO */
+        /* Cartão do Vídeo - Proporção 9:16 (VERTICAL) */
         .video-card {
-            position: relative;
+            position: relative; /* CRUCIAL para o posicionamento absoluto do iframe */
             background: var(--bg-card);
             border-radius: 10px;
             overflow: hidden;
@@ -136,17 +130,14 @@
             box-shadow: var(--shadow-subtle);
             transition: all 0.3s ease;
             width: 100%;
-            height: 100%;
             
-            /* FORÇA A PROPORÇÃO 9:16 (VERTICAL) */
+            /* FORÇA A PROPORÇÃO 9:16 */
             aspect-ratio: 9 / 16; 
         }
 
         @media (min-width: 768px) {
             .video-card {
-                 /* Limita o tamanho máximo de cada cartão no PC, para não ficarem absurdamente altos */
                 max-width: 400px;
-                /* Centraliza os cartões dentro de cada célula do grid (se forem menores que a célula) */
                 justify-self: center; 
             }
         }
@@ -175,12 +166,15 @@
             letter-spacing: 0.5px;
         }
 
-        /* Iframe do Vídeo */
+        /* Iframe do Vídeo - CORREÇÃO FINAL PARA SAFARI */
         iframe {
             width: 100%;
             height: 100%;
             border: none;
-            position: relative;
+            /* Força o iframe a ocupar 100% da área do pai (.video-card) */
+            position: absolute; 
+            top: 0;
+            left: 0;
             z-index: 2;
         }
 
