@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Página com 4 vídeos — 2x2</title>
+  <style>
+    :root{--gap:12px;--bg:#0f1724;--card:#0b1220;--text:#e6eef8}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#071129 0%, #071831 100%);font-family:Inter,system-ui,Segoe UI,Roboto,Arial;color:var(--text)}
+    .wrap{max-width:1100px;margin:28px auto;padding:18px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    header h1{margin:0;font-size:18px}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--gap);margin-top:18px}
+    .card{background:rgba(255,255,255,0.03);border-radius:10px;padding:8p…
+[09:41, 27/11/2025] Luiz Neto: <!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoramento Multi-View</title>
+    
+    <!-- Fonte Moderna do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent: #3b82f6;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --glow: rgba(59, 130, 246, 0.5);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: radial-gradient(circle at top right, #1e293b 0%, #0f172a 100%);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Cabeçalho Estilizado */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h1::before {
+            content: '';
+            display: block;
+            width: 10px;
+            height: 10px;
+            background-color: #ef4444; /* Ponto vermelho de 'Rec' */
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ef4444;
+            animation: pulse 2s infinite;
+        }
+
+        .status-badge {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        /* Container Principal */
+        main {
+            flex: 1;
+            padding: 20px;
+            max-width: 1920px;
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Grid de Vídeos */
+        .video-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            width: 100%;
+            height: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .video-grid {
+                grid-template-columns: repeat(2, 1fr);
+                /* Ajusta altura para caber na tela se possível */
+                height: calc(100vh - 140px); 
+            }
+        }
+
+        /* Cartão do Vídeo */
+        .video-card {
+            position: relative;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            width: 100%;
+            height: 100%;
+            /* Aspect ratio fallback para mobile */
+            aspect-ratio: 16/9; 
+        }
+
+        @media (min-width: 768px) {
+            .video-card {
+                aspect-ratio: auto; /* Deixa o grid controlar a altura no desktop */
+            }
+        }
+
+        /* Efeito de Hover e Foco */
+        .video-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--glow);
+            transform: scale(1.005);
+            z-index: 2;
+        }
+
+        /* Label do Vídeo (Canto superior esquerdo) */
+        .cam-label {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.8);
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Loader (aparece atrás do iframe enquanto carrega) */
+        .loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255,255,255,0.1);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            z-index: 1;
+        }
+
+        /* Rodapé */
+        footer {
+            background: rgba(15, 23, 42, 0.95);
+            padding: 15px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .qr-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .qr-box {
+            background: white;
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Animações */
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes spin {
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Central de Vídeo</h1>
+        <div class="status-badge">● AO VIVO (Simulado)</div>
+    </header>
+
+    <main>
+        <div class="video-grid">
+            <!-- Cam 1 -->
+            <div class="video-card">
+                <div class="cam-label">CAM 01</div>
+                <div class="loader"></div>
+                <iframe 
+                    src="https://drive.google.com/file/d/1-Us8kEdqnUB1fS7pHf-nyVQeFY79twuk/preview" 
+                    allow="autoplay; fullscreen">
+                </iframe>
+            </div>
+
+            <!-- Cam 2 -->
+            <div class="video-card">
+                <div class="cam-label">CAM 02</div>
+                <div class="loader"></div>
+                <iframe 
+                    src="https://drive.google.com/file/d/17UDo_PqC8B5kdhGHzHeAXUpdyzPG-1ok/preview" 
+                    allow="autoplay; fullscreen">
+                </iframe>
+            </div>
+
+            <!-- Cam 3 -->
+            <div class="video-card">
+                <div class="cam-label">CAM 03</div>
+                <div class="loader"></div>
+                <iframe 
+                    src="https://drive.google.com/file/d/1EjVlzLaBA5jTv__tKuZuVTFx8Ob1TFQu/preview" 
+                    allow="autoplay; fullscreen">
+                </iframe>
+            </div>
+
+            <!-- Cam 4 -->
+            <div class="video-card">
+                <div class="cam-label">CAM 04</div>
+                <div class="loader"></div>
+                <iframe 
+                    src="https://drive.google.com/file/d/1Tox2bVg95vZ0iQ0idDC6zVziT9Jq1oiu/preview" 
+                    allow="autoplay; fullscreen">
+                </iframe>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="qr-section">
+            <p>Compartilhar visualização:</p>
+            <div class="qr-box">
+                <img id="qrImage" src="" alt="Gerando QR Code..." width="120" height="120">
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Gera o QR Code automaticamente baseado na URL onde o site for hospedado
+        window.onload = function() {
+            const currentUrl = window.location.href;
+            const qrImage = document.getElementById('qrImage');
+            
+            // API pública de QR Code
+            if (currentUrl.startsWith('http')) {
+                qrImage.src = https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(currentUrl)}&margin=10;
+            } else {
+                // Placeholder caso esteja abrindo direto do arquivo no PC
+                qrImage.alt = "Hospede para ver o QR";
+                qrImage.src = "https://placehold.co/150x150/EEE/31343C?text=Preview";
+            }
+        };
+    </script>
+
+</body>
+</html>
