@@ -114,9 +114,10 @@
 
         @media (min-width: 768px) {
             .video-grid {
+                /* 2 colunas para 7 vídeos (ficará 2x4 com 1 espaço vazio) */
                 grid-template-columns: repeat(2, 1fr);
-                min-height: calc(100vh - 140px);
-                max-width: 840px; /* Leve aumento para caber melhor no desktop */
+                /* Ajustamos a altura para que 4 linhas caibam na tela com scroll se necessário */
+                max-width: 840px; 
             }
         }
 
@@ -235,15 +236,15 @@
 <body>
 
     <header>
-        <h1>Painel de Visualização</h1>
+        <h1>Painel de Evidências</h1>
         <div class="status-badge">ONLINE</div>
     </header>
 
     <main>
         <div class="video-grid">
-            <!-- Cam 1 (Vertical - 9:16) -->
+            <!-- VÍDEO 1 -->
             <div class="video-card">
-                <div class="cam-label">STREAM #1 / Entrada Principal</div>
+                <div class="cam-label">VÍDEO #1</div>
                 <div class="loader"></div>
                 <iframe 
                     src="https://drive.google.com/file/d/1-Us8kEdqnUB1fS7pHf-nyVQeFY79twuk/preview" 
@@ -252,9 +253,9 @@
                 </iframe>
             </div>
 
-            <!-- Cam 2 (Vertical - 9:16) -->
+            <!-- VÍDEO 2 -->
             <div class="video-card">
-                <div class="cam-label">STREAM #2 / Fundos</div>
+                <div class="cam-label">VÍDEO #2</div>
                 <div class="loader"></div>
                 <iframe 
                     src="https://drive.google.com/file/d/17UDo_PqC8B5kdhGHzHeAXUpdyzPG-1ok/preview" 
@@ -263,9 +264,9 @@
                 </iframe>
             </div>
 
-            <!-- Cam 3 (Vertical - 9:16) -->
+            <!-- VÍDEO 3 -->
             <div class="video-card">
-                <div class="cam-label">STREAM #3 / Corredor A</div>
+                <div class="cam-label">VÍDEO #3</div>
                 <div class="loader"></div>
                 <iframe 
                     src="https://drive.google.com/file/d/1EjVlzLaBA5jTv__tKuZuVTFx8Ob1TFQu/preview" 
@@ -274,9 +275,9 @@
                 </iframe>
             </div>
 
-            <!-- Cam 4 (Vertical - 9:16) -->
+            <!-- VÍDEO 4 -->
             <div class="video-card">
-                <div class="cam-label">STREAM #4 / Área de Serviço</div>
+                <div class="cam-label">VÍDEO #4</div>
                 <div class="loader"></div>
                 <iframe 
                     src="https://drive.google.com/file/d/1Tox2bVg95vZ0iQ0idDC6zVziT9Jq1oiu/preview" 
@@ -284,11 +285,47 @@
                     title="Vídeo 4">
                 </iframe>
             </div>
+
+            <!-- VÍDEO 5 -->
+            <div class="video-card">
+                <div class="cam-label">VÍDEO #5</div>
+                <div class="loader"></div>
+                <iframe 
+                    src="https://drive.google.com/file/d/1HRYng__qWGTvmduwGiPHR8hgsWKEPQnJ/preview" 
+                    allow="autoplay; fullscreen"
+                    title="Vídeo 5">
+                </iframe>
+            </div>
+
+            <!-- VÍDEO 6 -->
+            <div class="video-card">
+                <div class="cam-label">VÍDEO #6</div>
+                <div class="loader"></div>
+                <iframe 
+                    src="https://drive.google.com/file/d/1VD5UGY-1wupU95AWDD_FdMA18Gr1RvUl/preview" 
+                    allow="autoplay; fullscreen"
+                    title="Vídeo 6">
+                </iframe>
+            </div>
+
+            <!-- VÍDEO 7 -->
+            <div class="video-card">
+                <div class="cam-label">VÍDEO #7</div>
+                <div class="loader"></div>
+                <iframe 
+                    src="https://drive.google.com/file/d/1ozQHVBLA-fmv_KuRDMcZNDyoyLii2FBX/preview" 
+                    allow="autoplay; fullscreen"
+                    title="Vídeo 7">
+                </iframe>
+            </div>
+            
+            <!-- OBS: O GRID lidará com o 7º item, deixando o 8º espaço vazio se o grid for 2x4 -->
         </div>
     </main>
 
     <footer>
-        <div class="qr-section">
+        <!-- Adicionado ID 'qrSection' para controle de visibilidade -->
+        <div class="qr-section" id="qrSection"> 
             <p>Escanear para Acesso Móvel (QR Code da URL Hospedada):</p>
             <div class="qr-box">
                 <img id="qrImage" src="" alt="Gerando QR Code..." width="120" height="120">
@@ -300,6 +337,7 @@
         // Script para gerar o QR Code da URL hospedada
         window.onload = function() {
             const currentUrl = window.location.href;
+            const qrSection = document.getElementById('qrSection');
             const qrImage = document.getElementById('qrImage');
             
             if (currentUrl.startsWith('http')) {
@@ -307,13 +345,11 @@
                 qrImage.src = https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(currentUrl)}&margin=10;
                 qrImage.alt = "QR Code para esta página";
             } else {
-                // Placeholder para quando o arquivo é aberto localmente
-                qrImage.alt = "Hospede o site para gerar o QR Code funcional";
-                qrImage.src = "https://placehold.co/150x150/161b22/8b949e?text=HOSPEDE+O+SITE";
+                // Se a página for aberta localmente (file://), esconde a seção do QR Code.
+                qrSection.style.display = 'none';
             }
         };
     </script>
 
 </body>
 </html>
-
